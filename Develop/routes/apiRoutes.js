@@ -10,11 +10,15 @@ module.exports = function(app) {
       });
 
       app.post("/api/notes", function(req, res) {
+
+        dbData.push(req.body);
+        res.json(dbData);
        
       });
 
       app.post("/api/notes/:id", function(req, res) {
        
+        console.log("id post!")
     });
         
 }
