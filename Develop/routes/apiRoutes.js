@@ -9,7 +9,7 @@ function saveNotes() {
 
   let data = JSON.stringify(notes)
 
-  fs.writeFile("../Develop/db/db.json", data, (err) => {
+  fs.writeFile("../db/db.json", data, (err) => {
     if (err) throw err;
   });
 }
@@ -22,7 +22,7 @@ function idNotes() {
   });
 }
 
-fs.readFile("../Develop/db/db.json", function (err, data) {
+fs.readFile("../db/db.json", function (err, data) {
   if (err) throw err;
   notes = JSON.parse(data);
   idNotes();
