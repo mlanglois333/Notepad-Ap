@@ -16,8 +16,8 @@ function saveNotes(){
 
 function idNotes() {
   notes.forEach(function(item, i) {
-    var idNo = i+1
-    item.id = idNo;
+    
+    item.id = i;
 
   });
 }
@@ -42,12 +42,16 @@ module.exports = function(app) {
         idNotes();
         res.json(notes);
         saveNotes();
+        console.log(notes);
        
       });
 
       app.post("/api/notes/:id", function(req, res) {
 
-
+        notes.splice(1, req);
+        idNotes();
+        saveNotes();
+        res.json(notes);
        
         console.log("id post!")
     });
