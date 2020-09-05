@@ -5,13 +5,6 @@ var app = express();
 let notes = [];
 
 
-fs.readFile("../Develop/db/db.json", function( err, data){
-if (err) throw err;
-notes = JSON.parse(data);
-console.log(notes);
-});
-
-
 function saveNotes(){
 
   let data = JSON.stringify(notes)
@@ -21,7 +14,21 @@ function saveNotes(){
   });
 }
 
+function idNotes() {
+  notes.forEach(function(item, i) {
+    var idNo = i+1
+    item.id = idNo;
 
+  });
+}
+
+fs.readFile("../Develop/db/db.json", function( err, data){
+  if (err) throw err;
+  notes = JSON.parse(data);
+  idNotes();
+  console.log(notes);
+  });
+  
  
 module.exports = function(app) {
 
@@ -32,12 +39,15 @@ module.exports = function(app) {
       app.post("/api/notes", function(req, res) {
 
         notes.push(req.body);
+        idNotes();
         res.json(notes);
         saveNotes();
        
       });
 
       app.post("/api/notes/:id", function(req, res) {
+
+
        
         console.log("id post!")
     });
