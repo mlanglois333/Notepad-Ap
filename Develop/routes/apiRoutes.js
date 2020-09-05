@@ -40,8 +40,9 @@ module.exports = function (app) {
 
     notes.push(req.body);
     idNotes();
-    res.send(notes);
     saveNotes();
+    res.send(notes);
+    
 
 
   });
@@ -52,8 +53,8 @@ module.exports = function (app) {
       notes = [];
     }
     else {
-      var index = req.params.id;
-      notes.splice(1, index);
+      var ident = req.params.id;
+      notes.splice(ident, 1);
     }
     idNotes();
     saveNotes();
