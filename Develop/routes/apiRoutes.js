@@ -22,7 +22,7 @@ function idNotes() {
   });
 }
 
-fs.readFile("./db.json", function (err, data) {
+fs.readFile("./db/db.json", function (err, data) {
   if (err) throw err;
   notes = JSON.parse(data);
   idNotes();
